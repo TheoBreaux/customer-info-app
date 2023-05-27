@@ -10,6 +10,7 @@ const UserInput = () => {
 
         <label htmlFor="age">Age (Years)</label>
         <input type="number" name="age" id="age"></input>
+        <button type="submit">Add User</button>
       </form>
     </div>
   );
