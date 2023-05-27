@@ -1,12 +1,14 @@
-import React from 'react';
+import React from "react";
+import UserInput from "./components/UserInput";
+import InvalidInputModal from "./components/InvalidInputModal";
 
-
-function App() {
+const App = () => {
   return (
     <div>
-
+      <UserInput />
+      <InvalidInputModal />
     </div>
   );
-}
+};
 
 export default App;
