@@ -1,18 +1,23 @@
 import React from "react";
 import "./UserInput.css";
+import Button from "./UI/Button";
+import Card from "./Card";
 
 const UserInput = () => {
   return (
-    <div>
+    <Card>
       <form className="user-entry-form">
-        <label htmlFor="username">Username</label>
-        <input type="text" id="username" name="username"></input>
-
-        <label htmlFor="age">Age (Years)</label>
-        <input type="number" name="age" id="age"></input>
-        <button type="submit">Add User</button>
+        <div className="user-inputs">
+          <label htmlFor="username">Username</label>
+          <input type="text" id="username" name="username"></input>
+        </div>
+        <div className="user-inputs">
+          <label htmlFor="age">Age (Years)</label>
+          <input type="number" name="age" id="age"></input>
+        </div>
+        <Button />
       </form>
-    </div>
+    </Card>
   );
 };
 
