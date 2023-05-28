@@ -7,8 +7,8 @@ const App = () => {
   return (
     <div>
       <UserInput />
-      <User />
-      <InvalidInputModal />
+      {/* <User /> */}
+      {/* <InvalidInputModal /> */}
     </div>
   );
 };

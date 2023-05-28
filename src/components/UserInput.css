@@ -1,15 +1,23 @@
+.user-entry {
+    height: 200px;
+}
+
 .user-entry-form {
     display: flex;
     flex-direction: column;
-}
-
-label {
-    margin-bottom: 0.5rem;
-    font-weight: bold;
 }
 
 .user-inputs {
     display: flex;
     flex-direction: column;
     margin-bottom: 0.5rem;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+input {
+  padding: 0.5rem;
 }
