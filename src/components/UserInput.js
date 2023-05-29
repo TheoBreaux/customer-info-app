@@ -1,36 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./UserInput.css";
 import Button from "./UI/Button";
 import Card from "./Card";
 
-const UserInput = () => {
+const UserInput = (props) => {
   const [userName, setUserName] = useState("");
-  const [userAge, setUserAge] = useState(0);
+  const [userAge, setUserAge] = useState("");
+  const formRef = useRef(null);
 
   const userNameChangeHandler = (event) => {
-    console.log(event.target.value);
     setUserName(event.target.value);
   };
 
   const ageChangeHandler = (event) => {
-    console.log(event.target.value);
     setUserAge(event.target.value);
   };
 
-  const userFormSubmitHandler = () => {};
-
-  const addUserInfoClickHandler = () => {};
+  const userFormSubmitHandler = (event) => {
+    const newUser = { userName: userName, userAge: userAge };
+    event.preventDefault();
+    props.setUserInfo((prevUsers) => [...prevUsers, newUser]);
+    formRef.current.reset();
+    props.setUserAdded(true);
+  };
 
   return (
     <Card className="user-entry">
-      <form className="user-entry-form">
+      <form
+        className="user-entry-form"
+        onSubmit={userFormSubmitHandler}
+        ref={formRef}>
         <div className="user-inputs">
           <label htmlFor="username">Username</label>
           <input
             onChange={userNameChangeHandler}
             type="text"
             id="username"
-            name="username"></input>
+            name="username"
+          />
         </div>
         <div className="user-inputs">
           <label htmlFor="age">Age (Years)</label>
@@ -38,13 +45,10 @@ const UserInput = () => {
             onChange={ageChangeHandler}
             type="number"
             name="age"
-            id="age"></input>
+            id="age"
+          />
         </div>
-        <Button
-          onClick={addUserInfoClickHandler}
-          type="submit"
-          text="Add User"
-        />
+        <Button type="submit" text="Add User" />
       </form>
     </Card>
   );
