@@ -6,15 +6,17 @@ import InvalidInputModal from "./components/InvalidInputModal";
 const App = () => {
   const [userInfo, setUserInfo] = useState([]);
   const [userAdded, setUserAdded] = useState(false);
-
-  console.log(userInfo);
-  
+  const [invalidModal, setInvalidModal] = useState(false);
 
   return (
     <div>
-      <UserInput setUserInfo={setUserInfo} setUserAdded={setUserAdded} />
+      <UserInput
+        setUserInfo={setUserInfo}
+        setUserAdded={setUserAdded}
+        setInvalidModal={setInvalidModal}
+      />
       {userAdded && <User userInfo={userInfo} />}
-      {/* <InvalidInputModal /> */}
+      {invalidModal && <InvalidInputModal invalidModal={invalidModal} />}
     </div>
   );
 };

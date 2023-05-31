@@ -17,11 +17,16 @@ const UserInput = (props) => {
   };
 
   const userFormSubmitHandler = (event) => {
-    const newUser = { userName: userName, userAge: userAge };
-    event.preventDefault();
-    props.setUserInfo((prevUsers) => [...prevUsers, newUser]);
-    formRef.current.reset();
-    props.setUserAdded(true);
+    if (userName !== "" && userAge !== "") {
+      const newUser = { userName: userName, userAge: userAge };
+      event.preventDefault();
+      props.setUserInfo((prevUsers) => [...prevUsers, newUser]);
+      formRef.current.reset();
+      props.setUserAdded(true);
+    } else {
+      event.preventDefault();
+      props.setInvalidModal(true);
+    }
   };
 
   return (
@@ -29,7 +34,8 @@ const UserInput = (props) => {
       <form
         className="user-entry-form"
         onSubmit={userFormSubmitHandler}
-        ref={formRef}>
+        ref={formRef}
+      >
         <div className="user-inputs">
           <label htmlFor="username">Username</label>
           <input

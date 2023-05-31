@@ -3,7 +3,7 @@ import "./InvalidInputModal.css";
 import Card from "./Card";
 import Button from "./UI/Button";
 
-const InvalidInputModal = (props) => {
+const InvalidInputModal = ({ text, ...props }) => {
   return (
     <Card className="modal">
       <div className="modal-header">
