@@ -10,7 +10,7 @@ const InvalidInputModal = ({ text, ...props }) => {
         <p className="invalid">Invalid Input</p>
       </div>
       <div>
-        <p className="modal-text-output">{}</p>
+        <p className="modal-text-output">{(text = "Hello")}</p>
         <Button text="Okay" className="exit-modal-btn" />
       </div>
     </Card>
