@@ -56,7 +56,7 @@ const AddUser = (props) => {
             id="age"
           />
         </div>
-        <Button type="submit" text="Add User" />
+        <Button type="submit">Add User</Button>
       </form>
     </Card>
   );

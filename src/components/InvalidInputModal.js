@@ -3,7 +3,7 @@ import "./InvalidInputModal.css";
 import Card from "./UI/Card";
 import Button from "./UI/Button";
 
-const InvalidInputModal = ({ text, ...props }) => {
+const InvalidInputModal = (props) => {
   const handler = () => {
     props.setInvalidModalDisplay(false);
   };
@@ -15,7 +15,9 @@ const InvalidInputModal = ({ text, ...props }) => {
       </div>
       <div>
         <p className="modal-text-output">{props.modalMessage}</p>
-        <Button text="Okay" className="exit-modal-btn" onClick={handler} />
+        <Button className="exit-modal-btn" onClick={handler}>
+          Okay
+        </Button>
       </div>
     </Card>
   );
