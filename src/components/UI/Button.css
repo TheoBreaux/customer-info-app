@@ -1,5 +1,5 @@
 button {
-  background-color: rgb(116, 9, 116);
+  background-color: #4f005f;
   color: white;
   width: 100px;
   padding: 0.5rem;
@@ -8,5 +8,5 @@ button {
 }
 
 button:hover {
-  background-color: rgb(138, 64, 138);
+  background-color: #741188;
 }
