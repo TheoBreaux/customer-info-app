@@ -4,4 +4,9 @@ button {
   width: 100px;
   padding: 0.5rem;
   font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(138, 64, 138);
 }

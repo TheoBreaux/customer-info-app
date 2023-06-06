@@ -1,22 +1,31 @@
 import React, { useState } from "react";
-import UserInput from "./components/UserInput";
+import AddUser from "./components/Users/AddUser";
 import User from "./components/User";
 import InvalidInputModal from "./components/InvalidInputModal";
 
 const App = () => {
   const [userInfo, setUserInfo] = useState([]);
   const [userAdded, setUserAdded] = useState(false);
-  const [invalidModal, setInvalidModal] = useState(false);
+  const [invalidModalDisplay, setInvalidModalDisplay] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   return (
     <div>
-      <UserInput
+      <AddUser
         setUserInfo={setUserInfo}
         setUserAdded={setUserAdded}
-        setInvalidModal={setInvalidModal}
+        setInvalidModalDisplay={setInvalidModalDisplay}
+        setModalMessage={setModalMessage}
+        modalMessage={modalMessage}
       />
       {userAdded && <User userInfo={userInfo} />}
-      {invalidModal && <InvalidInputModal invalidModal={invalidModal} />}
+      {invalidModalDisplay && (
+        <InvalidInputModal
+          invalidModalDisplay={invalidModalDisplay}
+          setInvalidModalDisplay={setInvalidModalDisplay}
+          modalMessage={modalMessage}
+        />
+      )}
     </div>
   );
 };
