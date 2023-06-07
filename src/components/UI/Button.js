@@ -5,7 +5,10 @@ const Button = (props) => {
   const classes = props.className;
   return (
     <div>
-      <button className={classes} type={props.type || "button"} onClick={props.onClick}>
+      <button
+        className={classes}
+        type={props.type || "button"}
+        onClick={props.onClick}>
         {props.children}
       </button>
     </div>

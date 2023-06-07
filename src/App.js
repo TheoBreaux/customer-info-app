@@ -1,29 +1,32 @@
 import React, { useState } from "react";
 import AddUser from "./components/Users/AddUser";
-import User from "./components/User";
-import InvalidInputModal from "./components/InvalidInputModal";
+import ErrorModal from "./components/UI/ErrorModal";
+import UsersList from "./components/Users/UsersList";
 
 const App = () => {
-  const [userInfo, setUserInfo] = useState([]);
+  const [users, setUsers] = useState([]);
   const [userAdded, setUserAdded] = useState(false);
   const [invalidModalDisplay, setInvalidModalDisplay] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
   const [modalMessage, setModalMessage] = useState("");
 
   return (
     <div>
       <AddUser
-        setUserInfo={setUserInfo}
+        setUsers={setUsers}
         setUserAdded={setUserAdded}
         setInvalidModalDisplay={setInvalidModalDisplay}
         setModalMessage={setModalMessage}
         modalMessage={modalMessage}
+        setModalTitle={setModalTitle}
       />
-      {userAdded && <User userInfo={userInfo} />}
+      {userAdded && <UsersList users={users} />}
       {invalidModalDisplay && (
-        <InvalidInputModal
+        <ErrorModal
           invalidModalDisplay={invalidModalDisplay}
           setInvalidModalDisplay={setInvalidModalDisplay}
           modalMessage={modalMessage}
+          modalTitle={modalTitle}
         />
       )}
     </div>
