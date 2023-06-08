@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import "./AddUser.css";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
+import Wrapper from "../Helpers/Wrapper";
 
 const AddUser = (props) => {
-  const [userName, setUserName] = useState("");
-  const [userAge, setUserAge] = useState("");
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
 
   const errorMessages = {
     message1: "Please enter a  valid name and age (non-empty values).",
@@ -14,63 +15,53 @@ const AddUser = (props) => {
     message4: "Invalid Age",
   };
 
-  const userNameChangeHandler = (event) => {
-    setUserName(event.target.value);
-  };
-
-  const ageChangeHandler = (event) => {
-    setUserAge(event.target.value);
-  };
-
   const addUserHandler = (event) => {
-    if (userName === "" || userAge === "") {
+    event.preventDefault();
+    const enteredName = nameInputRef.current.value;
+    const enteredAge = ageInputRef.current.value;
+
+    if (enteredName === "" || enteredAge === "") {
       props.setInvalidModalDisplay(true);
       props.setModalMessage(errorMessages.message1);
       props.setModalTitle(errorMessages.message3);
-    } else if (+userAge < 1) {
+    } else if (+enteredAge < 1) {
       props.setInvalidModalDisplay(true);
       props.setModalMessage(errorMessages.message2);
       props.setModalTitle(errorMessages.message4);
-    } else if (userName !== "" && userAge !== "") {
+    } else if (enteredName !== "" && enteredAge !== "") {
       const newUser = {
-        userName: userName,
-        userAge: userAge,
+        userName: enteredName,
+        userAge: enteredAge,
         id: Math.random().toString(),
       };
       props.setUsers((prevUsers) => [...prevUsers, newUser]);
       props.setUserAdded(true);
+      nameInputRef.current.value = "";
+      ageInputRef.current.value = "";
     }
-    event.preventDefault();
-    setUserName("");
-    setUserAge("");
   };
 
   return (
-    <Card className="user-entry">
-      <form className="user-entry-form" onSubmit={addUserHandler}>
-        <div className="user-inputs">
-          <label htmlFor="username">Username</label>
-          <input
-            onChange={userNameChangeHandler}
-            type="text"
-            id="username"
-            value={userName}
-            name="username"
-          />
-        </div>
-        <div className="user-inputs">
-          <label htmlFor="age">Age (Years)</label>
-          <input
-            onChange={ageChangeHandler}
-            type="number"
-            value={userAge}
-            name="age"
-            id="age"
-          />
-        </div>
-        <Button type="submit">Add User</Button>
-      </form>
-    </Card>
+    <Wrapper>
+      <Card className="user-entry">
+        <form className="user-entry-form" onSubmit={addUserHandler}>
+          <div className="user-inputs">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              ref={nameInputRef}
+            />
+          </div>
+          <div className="user-inputs">
+            <label htmlFor="age">Age (Years)</label>
+            <input type="number" id="age" name="age" ref={ageInputRef} />
+          </div>
+          <Button type="submit">Add User</Button>
+        </form>
+      </Card>
+    </Wrapper>
   );
 };
 

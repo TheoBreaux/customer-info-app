@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import AddUser from "./components/Users/AddUser";
 import ErrorModal from "./components/UI/ErrorModal";
 import UsersList from "./components/Users/UsersList";
@@ -11,7 +11,7 @@ const App = () => {
   const [modalMessage, setModalMessage] = useState("");
 
   return (
-    <div>
+    <Fragment>
       <AddUser
         setUsers={setUsers}
         setUserAdded={setUserAdded}
@@ -29,7 +29,7 @@ const App = () => {
           modalTitle={modalTitle}
         />
       )}
-    </div>
+    </Fragment>
   );
 };
 
